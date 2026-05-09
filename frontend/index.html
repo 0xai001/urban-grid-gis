@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Urban Grid GIS</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        crossorigin="" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">⚡</span>
+      <div>
+        <h1>Urban Grid GIS</h1>
+        <p class="tag">Predictive maintenance for city electrical networks · 2006 → 2026</p>
+      </div>
+    </div>
+    <a class="github" href="https://github.com/0xai001/urban-grid-gis" target="_blank" rel="noopener">View on GitHub →</a>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <section class="card">
+        <h2>Ask the grid</h2>
+        <p class="hint">Plain-English query. Examples below.</p>
+        <textarea id="ai-input" rows="3"
+          placeholder="Show me sections older than 30 years with sag over 25 cm"></textarea>
+        <button id="ai-go" class="primary">Ask</button>
+        <div class="examples">
+          <button class="chip" data-q="List sections installed before 1990">Pre-1990</button>
+          <button class="chip" data-q="Sections in the North district consuming more than 5000 kWh">North &gt; 5000 kWh</button>
+          <button class="chip" data-q="Show sections with sag over 25 cm">Sag &gt; 25 cm</button>
+          <button class="chip" data-q="Sections older than 30 years">Aging</button>
+        </div>
+        <div id="ai-out" class="ai-out"></div>
+      </section>
+
+      <section class="card">
+        <h2>Specialized analytics</h2>
+        <div class="actions">
+          <button data-endpoint="/api/analytics/densest-district">Densest district</button>
+          <button data-endpoint="/api/analytics/highest-consumption-district">Top consumption district</button>
+          <button data-endpoint="/api/analytics/highest-consumption-section">Top consumption section</button>
+          <button data-endpoint="/api/analytics/aging-sections?older_than_years=30">Aging ≥ 30y</button>
+          <button data-endpoint="/api/analytics/top-consumption-sections?limit=5">Top 5 consumers</button>
+          <button data-endpoint="/api/analytics/district-counts">All districts</button>
+        </div>
+        <pre id="analytics-out" class="json-out"></pre>
+      </section>
+
+      <section class="card">
+        <h2>Forecast a section</h2>
+        <p class="hint">Least-squares projection of a parameter into the future.</p>
+        <label>Section
+          <select id="fc-section"></select>
+        </label>
+        <label>Parameter
+          <select id="fc-param">
+            <option value="resistance_ohm">resistance (Ω)</option>
+            <option value="sag_cm">sag (cm)</option>
+            <option value="coating_condition">coating condition</option>
+            <option value="axis_deviation_cm">axis deviation (cm)</option>
+            <option value="vegetation_clearance_cm">vegetation clearance (cm)</option>
+          </select>
+        </label>
+        <label>Target date
+          <input type="date" id="fc-date" />
+        </label>
+        <button id="fc-value" class="primary">Predict value on date</button>
+        <label>Or target value
+          <input type="number" step="0.1" id="fc-target" placeholder="e.g. 50" />
+        </label>
+        <button id="fc-when" class="primary">Predict when value reached</button>
+        <pre id="fc-out" class="json-out"></pre>
+      </section>
+
+      <section class="card">
+        <h2>Selected section</h2>
+        <div id="selected-info">Click a line on the map to see details.</div>
+      </section>
+    </aside>
+
+    <main id="map"></main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

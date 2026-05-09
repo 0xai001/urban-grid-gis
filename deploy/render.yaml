@@ -1,0 +1,19 @@
+# One-click free deploy on Render. Requires a GitHub repo at github.com/<you>/urban-grid-gis.
+# After connecting your repo in the Render dashboard, set OPENAI_API_KEY in the
+# environment to enable the LLM-powered natural-language query (optional —
+# the rule-based fallback works without a key).
+services:
+  - type: web
+    name: urban-grid-gis
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: OPENAI_API_KEY
+        sync: false  # set this in the Render dashboard if you want the LLM path
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
