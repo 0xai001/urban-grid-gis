@@ -1,6 +1,6 @@
 # Urban Grid GIS
 
-> A modern, web-based reimplementation of a 2006 university master's graduate project — a
+> A modern, web-based reimplementation of a 2006 university diploma project — a
 > geographic information system for predictive maintenance of a city's
 > electrical network. Same domain model, same algorithms, modern stack, plus a
 > natural-language query endpoint.
@@ -27,8 +27,8 @@ version: identical feature set, identical core algorithm (least-squares
 regression), but built so anyone with a browser can use it and anyone with a
 GitHub account can deploy a copy.
 
-If you're a hiring manager: the [Project history](docs/HISTORY.md) explains
-the original 2006 architecture and what was modernized. The
+The [Project history](docs/HISTORY.md) explains the original 2006 architecture
+and what was modernized. The
 [Architecture notes](docs/ARCHITECTURE.md) walk through the code top-to-bottom.
 
 ---
