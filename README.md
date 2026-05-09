@@ -1,6 +1,6 @@
 # Urban Grid GIS
 
-> A modern, web-based reimplementation of a 2006 university diploma project — a
+> A modern, web-based reimplementation of a 2006 university master's graduate project — a
 > geographic information system for predictive maintenance of a city's
 > electrical network. Same domain model, same algorithms, modern stack, plus a
 > natural-language query endpoint.
